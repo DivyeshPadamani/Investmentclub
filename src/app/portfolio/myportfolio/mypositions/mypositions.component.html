@@ -1,0 +1,53 @@
+<div class="positions-header">
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <button mat-raised-button color="accent" class="position-refresh-button" (click)="refresh()">Refresh</button>
+</div>
+
+<div class="positions-container mat-elevation-z8">
+
+    <mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="ticker">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.company.ticker}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.company.companyName}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="shares">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Shares </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="value">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Value </mat-header-cell>
+            <mat-cell *matCellDef="let row"> ${{(row.amount * row.company.lastPrice).toFixed(2)}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="% change today">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> % change today </mat-header-cell>
+            <mat-cell *matCellDef="let row" [ngClass]="{'market-red': row.company.changePercent < 0, 'market-green': row.company.changePercent >= 0 }"> {{(row.company.changePercent) ? (row.company.changePercent * 100).toFixed(2) : 0}}% </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="change today">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> change today </mat-header-cell>
+            <mat-cell *matCellDef="let row" [ngClass]="{'market-red': row.company.change < 0, 'market-green': row.company.change >= 0 }"> ${{(row.company.change * row.amount).toFixed(2)}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="share price">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Share Price </mat-header-cell>
+            <mat-cell *matCellDef="let row"> ${{row.company.lastPrice.toFixed(2)}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+</div>

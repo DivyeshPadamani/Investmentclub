@@ -1,0 +1,179 @@
+.market-layout {
+    display: flex;
+    flex-direction: row;
+    padding: 0 16px;
+}
+
+.market-card-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.market-sidebar {
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+}
+
+@media only screen and (max-width: 1300px)  {
+    .market-sidebar {
+        flex: 1 !important;
+        width: unset !important;
+    }
+
+    .market-layout {
+        display: flex;
+        flex-direction: column !important;
+        padding: 0 16px;
+    }
+}
+
+.market-header {
+    min-height: 32px;
+    padding: 8px 24px 0;
+    margin: 12px;
+    display: flex;
+}
+
+.market-header > input {
+    flex: 1;
+}
+
+.market-header > button {
+    width: 80px;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.market-order {
+    height: 48px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+}
+
+.market-order > button {
+    margin: 4px;
+}
+
+.mat-table {
+    overflow: auto;
+    max-height: 1000px;
+}
+
+.market-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    flex: 1;
+}
+
+.market-card {
+    flex: 1;
+    display: flex;
+    margin: 4px;
+    flex-direction: column;
+}
+
+.company-card {
+    flex: 1;
+    display: flex;
+    margin: 4px;
+    flex-direction: column;
+    min-height: 700px;
+}
+
+.market-row {
+
+}
+
+.market-row:hover {
+    background-color: #d6d6d6;
+}
+
+.company-view-card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.trading-view-chart {
+    flex: 1;
+}
+
+.market-red {
+    color:red;
+}
+
+.market-green {
+    color:green;
+}
+
+.company-statistics {
+    display: flex;
+    height: 270px;
+}
+
+.company-statistic-row {
+    display: flex;
+}
+
+.company-statistic {
+    flex: 1;
+    margin: 16px;
+}
+
+.company-view-header {
+    font-size: 28px;
+    text-align: center;
+}
+
+.company-statistic-row {
+    border-bottom: 1px #d6d6d6 solid;
+    display: flex;
+}
+
+.company-statistic-row * {
+    flex: 1;
+}
+
+.trading-news {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.news-article {
+    display: flex;
+    flex-direction: column;
+    margin: 16px 0px;
+    border-top: 1px #e3e3e3 solid;
+    padding: 4px 0px;
+}
+
+.news-article-header {
+    font-size: 18px;
+    margin: 0px;
+}
+
+.news-article-summary {
+    flex: 1;
+    font-size: 12px;
+}
+
+.news-read-more {
+    height: 14px;
+}
+
+.selected-company-news-header {
+
+}
+
+.mat-chip-list {
+    height: 32px;
+    overflow: hidden;
+}

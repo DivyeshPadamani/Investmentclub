@@ -1,0 +1,35 @@
+.positions-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.mat-table {
+    overflow: auto;
+    max-height: 1000px;
+}
+
+.positions-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    flex: 1;
+}
+
+.market-red {
+    color:red;
+}
+
+.market-green {
+    color:green;
+}
+
+.position-refresh-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}

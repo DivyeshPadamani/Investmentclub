@@ -1,0 +1,16 @@
+.login-card {
+    max-width: 600px;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+}
+
+.login-post-button {
+    float: right;
+}
+
+.login-form-full-width {
+    width: 100%;
+}

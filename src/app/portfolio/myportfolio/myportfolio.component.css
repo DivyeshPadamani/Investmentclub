@@ -1,0 +1,65 @@
+.my-portfolio-layout {
+    display: flex;
+    flex-direction: row;
+    padding: 0 16px;
+}
+
+@media only screen and (max-width: 1300px)  {
+    .portfolio-sidebar {
+        flex: 1 !important;
+        width: unset !important;
+    }
+
+    .my-portfolio-layout {
+        display: flex;
+        flex-direction: column !important;
+        padding: 0 16px;
+    }
+}
+
+.my-portfolio-card-content {
+    display: flex;
+    flex: 1;
+}
+
+.portfolio-sidebar {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.positions-card {
+    flex: 1;
+    display: flex;
+    margin: 4px;
+    flex-direction: column;
+    position: relative;
+}
+
+.holdings-card {
+    height: 80px;
+    margin: 4px;
+}
+
+
+.orders-card {
+    flex: 1;
+    display: flex;
+    margin: 4px;
+    flex-direction: column;
+    position: relative;
+}
+
+.my-portfolio-card-content > * {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.my-portfolio-value {
+    float: right;
+}
+
+.my-portfolio > * {
+    margin: 4px;
+}

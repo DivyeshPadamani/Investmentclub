@@ -1,0 +1,73 @@
+.class-layout {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+.class-layout:host {
+    flex: 1 !important;
+    display: flex !important;
+}
+
+.class-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 8px;
+    overflow-x: hidden;
+}
+
+.class-sidebar {
+    width: 250px;
+    display: flex;
+    padding: 8px;
+}
+
+.class-sidebar-card {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.group-headline {
+    margin-bottom: -8px;
+}
+
+.class-form {
+    margin: 20px 10px;
+}
+
+.class-posts {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.class-newpost {
+    height: 160px;
+}
+
+.post-form-full-width {
+    width: 100%;
+}
+
+.post-button {
+    float: right;
+}
+
+.post-body {
+    white-space: initial !important;
+}
+
+.post-card {
+    overflow-y: auto;
+}
+
+.post-time {
+    margin: 4px 0px !important;
+    color: #767676;
+}
+
+.post-list-item {
+    height: unset !important;
+    margin: 16px 0px;
+}

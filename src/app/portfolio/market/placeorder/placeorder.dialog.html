@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>{{selectedCompany.companyName}}</h2>
+<mat-dialog-content>
+    <div class="place-order-layout">
+        <div class="place-orders">
+            <form class="place-order-buy" [formGroup]="buyFormGroup" (submit)="placeBuy()">
+                <p class="place-order-header">Buy</p>
+                <mat-form-field *ngIf="buyOrderTypes.indexOf('Market Order') < 0">
+                    <input matInput formControlName="orderPrice" type="number" class="place-order-input" placeholder="Buy price">
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="amount" matInput type="number" class="place-order-input" placeholder="Amount to buy">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="buyExpireDatePicker" formControlName="expiration" placeholder="Expiration">
+                    <mat-datepicker-toggle matSuffix [for]="buyExpireDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #buyExpireDatePicker></mat-datepicker>
+                </mat-form-field>
+                <mat-radio-group formControlName="action" class="order-radio-group">
+                    <mat-radio-button class="order-radio-button" *ngFor="let orderType of buyOrderTypes" [value]="orderType">
+                        {{orderType}}
+                    </mat-radio-button>
+                </mat-radio-group>
+                <button mat-raised-button accent="primary" class="place-order-button">Place Buy Order</button>
+            </form>
+            <form class="place-order-sell" [formGroup]="sellFormGroup" (submit)="placeSell()" *ngIf="existingPosition">
+                <p class="place-order-header">Sell ({{existingPosition.amount}} shares total)</p>
+                <mat-form-field *ngIf="sellOrderType !== 'Market Order'">
+                    <input matInput formControlName="orderPrice" type="number" class="place-order-input" placeholder="Sell price">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput formControlName="amount" ng type="number" class="place-order-input" placeholder="Amount to sell">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="sellExpireDatePicker" formControlName="expiration" placeholder="Expiration">
+                    <mat-datepicker-toggle matSuffix [for]="sellExpireDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #sellExpireDatePicker></mat-datepicker>
+                </mat-form-field>
+                <mat-checkbox formControlName="stopLossEnabled" class="stop-loss-checkbox">Stop Loss</mat-checkbox>
+                <mat-form-field *ngIf="sellFormGroup.value.stopLossEnabled" class="stopLoss-checkbox">
+                    <input matInput formControlName="stopLoss" type="number" class="place-order-input" placeholder="Stop loss price">
+                </mat-form-field>
+                <mat-radio-group formControlName="action" class="order-radio-group">
+                    <mat-radio-button class="order-radio-button" *ngFor="let orderType of sellOrderTypes" [value]="orderType">
+                        {{orderType}}
+                    </mat-radio-button>
+                </mat-radio-group>
+                <button mat-raised-button accent="primary" class="place-order-button">Place Sell Order</button>
+            </form>
+        </div>
+    </div>
+</mat-dialog-content>

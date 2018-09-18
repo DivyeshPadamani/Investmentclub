@@ -1,0 +1,60 @@
+<div class="class-layout">
+    <div class="class-content">
+        <div class="class-posts">
+            <mat-card class="post-card">
+                <mat-card-header>
+                    <mat-card-title>Latest posts</mat-card-title>
+                </mat-card-header>
+                <mat-divider></mat-divider>
+                <mat-card-content>
+                    <div class="class-post-list">
+                        <mat-list>
+                            <mat-list-item class="post-list-item" *ngFor="let post of class.post">
+                                <h4 matLine>Post by {{post.poster.firstName + ', ' + post.poster.lastName}}</h4>
+                                <p matLine class="post-time">{{cleanTime(post.time)}}</p>
+                                <p matLine class="post-body">{{post.body}}</p>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="class-newpost">
+            <form class="class-form" [formGroup]="postFormGroup" (submit)="submit()">
+                <mat-form-field class="post-form-full-width">
+                    <textarea class="post-textarea" formControlName="body" matInput type="text" placeholder="Write your post here" required></textarea>
+                </mat-form-field>
+                <mat-checkbox formControlName="emailed">Notify by email</mat-checkbox>
+                <button mat-raised-button type="submit" color="accent" class="post-button">Post</button>
+            </form>
+        </div>
+    </div>
+    <div class="class-sidebar">
+        <mat-card class="class-sidebar-card">
+            <mat-card-header>
+                <mat-card-title>{{class.name}}</mat-card-title>
+                <mat-card-subtitle>
+                    <a>Class Code : {{class.classCode}}</a>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+                <div class="class-mentor-list">
+                    <mat-list>
+                        <h3 matSubheader class="group-headline">Mentors</h3>
+                        <mat-list-item *ngFor="let mentor of class.instructors">
+                            <h4 matLine>{{mentor.lastName}}, {{mentor.firstName}}</h4>
+                            <p matLine>{{mentor.email}} </p>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <h3 matSubheader class="group-headline">Students</h3>
+                        <mat-list-item *ngFor="let student of class.students">
+                            <h4 matLine>{{student.lastName}}, {{student.firstName}}</h4>
+                            <p matLine>{{student.email}} </p>
+                        </mat-list-item>
+                    </mat-list>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

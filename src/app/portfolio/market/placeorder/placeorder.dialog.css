@@ -1,0 +1,63 @@
+.place-order-layout {
+    display: flex;
+    flex-direction: column;
+    min-width: 600px;
+}
+
+.place-order-header {
+    font-size: 24px;
+    text-align: center;
+}
+
+.place-orders {
+    flex: 1;
+    display: flex;
+}
+
+.place-order-buy {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+}
+
+.place-order-sell {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+}
+
+.place-order-header {
+    font-size: 18px;
+    text-align: center;
+    border-bottom: 1px #d6d6d6 solid;
+    margin: 8px 0px;
+    padding: 4px;
+}
+
+.stop-loss-checkbox {
+    margin: 8px 0px 16px 0px;
+}
+
+.place-order-button {
+    margin-top: 32px;
+}
+
+.place-order-input {
+    font-size: 18px;
+}
+
+.order-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+    flex: 1;
+}
+  
+.order-radio-button {
+    margin: 5px;
+}
+  
+.order-selected-value {
+    margin: 15px 0;
+}

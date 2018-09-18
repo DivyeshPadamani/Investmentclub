@@ -1,0 +1,34 @@
+.layout-full {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+
+.layout-full > app-topbar {
+    height: 80px;
+}
+
+.content-view {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    min-width: 700px;
+}
+
+.layout-full > app-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.layout-full > app-content > app-class {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.layout-full > app-footer {
+
+}

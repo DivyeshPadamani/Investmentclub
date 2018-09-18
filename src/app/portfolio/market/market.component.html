@@ -1,0 +1,141 @@
+<div class="market-layout">
+    <div class="market-sidebar">
+        <mat-card class="market-card">
+            <mat-card-header>
+                <mat-card-title>Market</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="market-card-content">
+                <div class="market-header">
+                    <input matInput placeholder="Search for stocks" [(ngModel)]="filterValue">
+                    <button mat-raised-button color="accent" (click)="applyFilter(filterValue)">Search</button>
+                </div>
+
+                <div class="market-container mat-elevation-z8">
+                    <mat-table [dataSource]="dataSource" matSort>
+                        <ng-container matColumnDef="ticker">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.ticker}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="name">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.companyName}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="share price">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Share Price </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> ${{(row.lastPrice) ? row.lastPrice.toFixed(2) : 0}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="open">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Open </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> ${{(row.open) ? row.open.toFixed(2) : 0}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="% change today">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> % change </mat-header-cell>
+                            <mat-cell *matCellDef="let row" [ngClass]="{'market-red': row.changePercent < 0, 'market-green': row.changePercent >= 0 }">
+                                {{(row.changePercent) ? (row.changePercent * 100).toFixed(2) : 0}}% </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="low">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Today's low </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> ${{(row.low) ? row.low.toFixed(2) : 0}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="high">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Today's high </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> ${{(row.high) ? row.high.toFixed(2) : 0}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="view">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                            <mat-cell *matCellDef="let row">
+                                <button mat-raised-button color="accent" (click)="openMarket(row)">View</button>
+                            </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;" class="market-row">
+                        </mat-row>
+                    </mat-table>
+
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <mat-card class="company-card">
+        <mat-card-header>
+            <mat-card-title>Company</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="company-view-card-content">
+            <p class="company-view-header" *ngIf="selectedCompany">{{selectedCompany.companyName}}</p>
+            <div class="company-statistics" *ngIf="selectedCompany">
+                <div class="company-statistic">
+                    <div class="company-statistic-row">
+                        <p>Share price</p>
+                        <p *ngIf="selectedCompany.lastPrice">${{selectedCompany.lastPrice.toFixed(2)}}</p>
+                    </div>
+                    <div class="company-statistic-row">
+                        <p>Open</p>
+                        <p *ngIf="selectedCompany.open">${{selectedCompany.open.toFixed(2)}}</p>
+                    </div>
+                    <div class="company-statistic-row">
+                        <p>Low</p>
+                        <p *ngIf="selectedCompany.low">${{selectedCompany.low.toFixed(2)}}</p>
+                    </div>
+                    <div class="company-statistic-row">
+                        <p>High</p>
+                        <p *ngIf="selectedCompany.high">${{selectedCompany.high.toFixed(2)}}</p>
+                    </div>
+                    <div class="company-statistic-row">
+                        <p>Volume</p>
+                        <p *ngIf="selectedCompany.volume">{{selectedCompany.volume}}</p>
+                    </div>
+                </div>
+                <div class="company-statistic">
+                    <div class="company-statistic-row">
+                        <p>52 Week Low</p>
+                        <p *ngIf="selectedCompany.week52Low">${{selectedCompany.week52Low.toFixed(2)}}</p>
+                    </div>
+                    <div class="company-statistic-row">
+                        <p>52 Week High</p>
+                        <p *ngIf="selectedCompany.week52High">${{selectedCompany.week52High.toFixed(2)}}</p>
+                    </div>
+                    <div class="company-statistic-row">
+                        <p>Today's change</p>
+                        <p *ngIf="selectedCompany.change" [ngClass]="{'market-red': selectedCompany.change < 0, 'market-green': selectedCompany.change >= 0 }">${{selectedCompany.change.toFixed(2)}}</p>
+                    </div>
+                    <div class="company-statistic-row">
+                        <p>Today's change %</p>
+                        <p *ngIf="selectedCompany.changePercent" [ngClass]="{'market-red': selectedCompany.changePercent < 0, 'market-green': selectedCompany.changePercent >= 0 }">{{(selectedCompany.changePercent * 100).toFixed(2)}}%</p>
+                    </div>
+                </div>
+                <div class="trading-news" *ngIf="selectedCompany">
+                    <p class="selected-company-news-header">{{selectedCompany.ticker}} news</p>
+                    <div class="news-article" *ngFor="let news of selectedCompany.news">
+                        <p class="news-article-header">{{news.headline}}</p>
+                        <p class="news-article-summary">
+                            {{news.summary}}
+                        </p>
+                        <a class="news-read-more" href="{{news.url}}" target="_blank">Read more</a>
+                        <!--
+                        <mat-chip-list>
+                            <mat-chip *ngFor="let related of news.related.split(',')" class="related-chip">{{related}}</mat-chip>
+                        </mat-chip-list>
+                    -->
+                    </div>
+                </div>
+            </div>
+            <div class="market-order" *ngIf="selectedCompany">
+                <button mat-raised-button color="accent" (click)="buy()">Buy</button>
+                <button mat-raised-button color="accent" (click)="sell()">Sell</button>
+            </div>
+            <div class="trading-view-chart" id="trading-view">
+
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

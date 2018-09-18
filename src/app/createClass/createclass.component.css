@@ -1,0 +1,16 @@
+.createClass-card {
+    max-width: 600px;
+}
+
+.createClass-container {
+    display: flex;
+    justify-content: center;
+}
+
+.class-post-button {
+    float: right;
+}
+
+.class-form-full-width {
+    width: 100%;
+}

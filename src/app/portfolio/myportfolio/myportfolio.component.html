@@ -1,0 +1,45 @@
+<div class="my-portfolio-layout">
+    <div class="portfolio-sidebar">
+        <mat-card class="holdings-card">
+            <mat-card-header>
+                <mat-card-title>My Portfolio</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="my-portfolio" *ngIf="user.getUser()">
+                    <div class="my-portfolio-cash">
+                        Cash:
+                        <span class="my-portfolio-value" *ngIf="user.getUser().cash">${{(user.getUser().cash).toFixed(2)}}</span>
+                    </div>
+                    <div class="my-portfolio-holdings">
+                        Holdings:
+                        <span class="my-portfolio-value">
+                            <span class="my-portfolio-value" *ngIf="user.getValue() !== undefined">${{user.getValue().toFixed(2)}}</span>
+                        </span>
+                    </div>
+                    <div class="my-portfolio-holdings">
+                        Total Value:
+                        <span class="my-portfolio-value">
+                            <span class="my-portfolio-value" *ngIf="(user.getValue() !== undefined && user.getUser().cash)">${{(user.getValue() + (user.getUser().cash)).toFixed(2)}}</span>
+                        </span>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="orders-card">
+            <mat-card-header>
+                <mat-card-title>My Orders</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="my-portfolio-card-content">
+                <app-myorders></app-myorders>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <mat-card class="positions-card">
+        <mat-card-header>
+            <mat-card-title>My Positions</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="my-portfolio-card-content">
+            <app-mypositions></app-mypositions>
+        </mat-card-content>
+    </mat-card>
+</div>

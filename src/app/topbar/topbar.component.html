@@ -1,0 +1,28 @@
+<!--
+<div class="topbar">
+    <h3 class="topbar-header">Junior Investment Academy</h3>
+    <button class="login">Log in</button>
+    <button class="register">Register</button>
+</div>
+-->
+<mat-toolbar color="primary">
+    <span class="topbar-header">Vesto</span>
+    <button mat-raised-button color="accent" class="top-bar-button" *ngIf="user.isLoggedIn()" [routerLink]="['/my-portfolio']">My Portfolio</button>
+    <button mat-raised-button color="accent" class="top-bar-button" *ngIf="user.isLoggedIn()" [routerLink]="['/market']">Market Watch List</button>
+    <ng-container *ngIf="user.isLoggedIn()">
+        <button mat-raised-button color="accent" class="top-bar-button" *ngFor="let classOption of getClasses()" [routerLink]="['/class/' + classOption._id]">{{classOption.name}}</button>
+    </ng-container>
+    <span class="fill-remaining-space"></span>
+    <p class="welcome-topbar" *ngIf="user.isLoggedIn()">Welcome, {{user.getUser().firstName}}</p>
+    <button mat-raised-button color="accent" class="top-bar-button" *ngIf="user.isLoggedIn() && user.getUser().type !== 'Student'" [routerLink]="['/create-class']">Create Class</button>
+    <div class="button-row">
+        <button mat-raised-button color="accent" *ngIf="!user.isLoggedIn()" [routerLink]="['/login']">Login</button>
+        <button mat-raised-button color="accent" *ngIf="!user.isLoggedIn()" [routerLink]="['/register']">Register</button>
+        <button mat-raised-button color="primary" *ngIf="user.isLoggedIn()" (click)="logout()">Logout</button>
+    </div>
+</mat-toolbar>
+<div class="ticker-bar-span" id="ticker-widget">
+    <div class="tradingview-widget-container">
+
+    </div>
+</div>

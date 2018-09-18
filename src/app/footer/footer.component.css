@@ -1,0 +1,13 @@
+.footer {
+    height: 100%;
+    width: 100%;
+    background-color: #4549b4;
+    border-bottom: 2px #aaadf1 solid;
+}
+
+.footer-text {
+    text-align: center;
+    color: #f6f4f6;
+    font-size: 18px;
+    margin: 4px;
+}

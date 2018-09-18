@@ -1,0 +1,46 @@
+<div class="register-container">
+    <mat-card class="register-card">
+        <form class="register-form" [formGroup]="registerFormGroup" (submit)="submit()">
+            <mat-card-header>
+                <mat-card-title>Welcome to Vesto</mat-card-title>
+                <mat-card-subtitle>
+                    <a [routerLink]="['/login']">Already have an account? Click here to log in</a>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="button-row" *ngIf="!iAmA">
+                    <button mat-raised-button (click)="iAmA = 'Student'" color="accent" type="button">I'm a student</button>
+                    <button mat-raised-button (click)="iAmA = 'Mentor'" color="accent" type="button">I'm a mentor</button>
+                </div>
+                <div *ngIf="iAmA">
+                    <mat-form-field class="register-form-full-width">
+                        <input formControlName="firstName" matInput type="text" placeholder="First name" required/>
+                    </mat-form-field>
+                    <mat-form-field class="register-form-full-width">
+                        <input formControlName="lastName" matInput type="text" placeholder="Last name" required/>
+                    </mat-form-field>
+                    <mat-form-field class="register-form-full-width">
+                        <input formControlName="birthday" matInput [matDatepicker]="picker" placeholder="Birthday">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker startView="year"></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field class="register-form-full-width" *ngIf="iAmA === 'Student'">
+                        <input formControlName="classCode" matInput type="text" placeholder="Class Code" required/>
+                    </mat-form-field>
+                    <mat-form-field class="register-form-full-width">
+                        <input formControlName="email" matInput type="email" placeholder="student@myemail.com" required/>
+                    </mat-form-field>
+                    <mat-form-field class="register-form-full-width">
+                        <input formControlName="password" matInput type="password" placeholder="Password" required/>
+                    </mat-form-field>
+                    <mat-form-field class="register-form-full-width">
+                        <input formControlName="confirmPassword" matInput type="password" placeholder="Confirm Password" required/>
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button *ngIf="iAmA" mat-raised-button type="submit" color="accent" class="register-post-button">Register</button>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>

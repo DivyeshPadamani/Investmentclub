@@ -1,0 +1,16 @@
+.register-card {
+    max-width: 600px;
+}
+
+.register-container {
+    display: flex;
+    justify-content: center;
+}
+
+.register-post-button {
+    float: right;
+}
+
+.register-form-full-width {
+    width: 100%;
+}

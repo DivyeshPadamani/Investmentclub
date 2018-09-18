@@ -1,0 +1,43 @@
+<div class="orders-header">
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <button mat-raised-button color="accent" class="order-refresh-button" (click)="refresh()">Refresh</button>
+</div>
+
+<div class="orders-container mat-elevation-z8">
+
+    <mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.action}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ticker">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.company.ticker}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="shares">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Shares </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+            <mat-cell *matCellDef="let row"> ${{row.orderPrice.toFixed(2)}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="expires">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Expires </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{order.time}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

@@ -1,0 +1,29 @@
+.topbar {
+    height: 100%;
+    width: 100%;
+    background-color: #4549b4;
+    border-bottom: 2px #aaadf1 solid;
+}
+
+.topbar-header {
+    margin-right: 32px;
+    font-size: 32px;
+    color: #f8f8f8;
+}
+
+.welcome-topbar {
+    margin-right: 32px;
+}
+
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+.top-bar-button {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.ticker-bar-span {
+    width: 100%;
+}
